@@ -318,19 +318,25 @@ class SVGIcon extends HTMLElement {
 
   get src() {
     if (this.hasAttribute('src')) {
+      if (this.getAttribute('src') == '') {
+        return 'icons'
+      }
       return this.getAttribute('src').replace(/\/$/, '')
     }
-
-    return ''
+    //default source
+    return 'icons'
   }
 
   get color() {
     const svgElement = document.getElementsByTagName('svg-icon')[0]
     if (this.hasAttribute('color')) {
+      //checking for color attribute
       return this.getAttribute('color')
     } else if (svgElement.parentElement?.style?.color) {
+      //checking for color of parent element
       return svgElement?.parentElement?.style?.color
     }
+    //default color
     return 'black'
   }
 
@@ -338,17 +344,35 @@ class SVGIcon extends HTMLElement {
     if (this.hasAttribute('name')) {
       return this.getAttribute('name')
     }
-    return 'question'
+    return ''
   }
 
   connectedCallback() {
     const icon = new Image(this.size, this.size)
-    icon.src = `${this.src}/${this.name}.svg`
+    //dynamically adding source property on image based on the provided attributes
+    if (this.src?.slice(-4) == '.svg') {
+      icon.src = this.src
+    } else if (this.name) {
+      icon.src = `${this.src}/${this.name}.svg`
+    } else {
+      icon.src = `${this.src}/add.svg`
+    }
+    //Injecting svg to img
     SVGInject(icon)
+    //changing fill property of svg
     icon.style.fill = this.color
-
+    //making a shadowRoot
     const shadowRoot = this.attachShadow({ mode: 'open' })
     shadowRoot.appendChild(icon)
+    //accessing the path tags of svg and change the fill property
+    setTimeout(() => {
+      let svgChilds = document.getElementsByTagName('svg-icon')[0].shadowRoot.childNodes[0].childNodes
+      for (let i = 0; i < svgChilds.length; i++) {
+        if (svgChilds[i].style) {
+          svgChilds[i].style.fill = this.color
+        }
+      }
+    }, 50)
   }
 }
 customElements.define('svg-icon', SVGIcon)
