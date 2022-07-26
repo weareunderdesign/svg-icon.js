@@ -325,8 +325,11 @@ class SVGIcon extends HTMLElement {
   }
 
   get color() {
+    const svgElement = document.getElementsByTagName('svg-icon')[0]
     if (this.hasAttribute('color')) {
       return this.getAttribute('color')
+    } else if (svgElement.parentElement?.style?.color) {
+      return svgElement?.parentElement?.style?.color
     }
     return 'black'
   }
