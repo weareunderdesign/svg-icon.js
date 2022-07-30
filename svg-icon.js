@@ -1,8 +1,3 @@
-// HTML Custom Element (HTMLElement) for SVG icons - DONE
-// By default, it fetches icons from /icons, but you can override this by setting the src attribute.
-// The default size is 24px, but you can override this by setting the size attribute or with your own CSS. - DONE
-// the icon's fill is the same as the font's inherited color, therefore can be overrided with class selector.
-// The color attribute can be used to override the fill of the icon with plain hex values.
 !(function (o, l) {
   var r,
     a,
@@ -355,7 +350,7 @@ class SVGIcon extends HTMLElement {
     } else if (this.name) {
       icon.src = `${this.src}/${this.name}.svg`
     } else {
-      icon.src = `${this.src}/add.svg`
+      icon.src = `${this.src}/icon.svg`
     }
     //Injecting svg to img
     SVGInject(icon)
