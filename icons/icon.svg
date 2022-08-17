@@ -1,6 +1,3 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle r="5.5" transform="matrix(-1 0 0 1 18 18)" stroke="white"/>
-<circle cx="18" cy="6" r="5.5" fill="white" stroke="black"/>
-<circle cx="6" cy="6" r="6" fill="black"/>
-<circle r="5.5" transform="matrix(-1 0 0 1 6 18)" fill="black" stroke="white"/>
+<svg width="319" height="319" viewBox="0 0 319 319" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="159.5" cy="159.5" r="159.5" fill="black"/>
 </svg>
