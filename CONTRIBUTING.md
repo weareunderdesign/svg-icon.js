@@ -1,5 +1,3 @@
-# Contributing.md
-
 # Contributing to svg-icon.js
 
 A big welcome and thank you for considering contributing to svg-icon.js!

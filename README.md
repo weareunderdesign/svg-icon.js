@@ -1,5 +1,3 @@
-# Readme.md
-
 # svg-icon.js
 
 An SVG icon component for the web. Optimized for smooth design and development experience. Fits into any web framework and can be used anyhow.
