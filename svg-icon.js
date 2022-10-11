@@ -1,3 +1,5 @@
+import { config } from './svg-icon.config.js';
+
 !(function (o, l) {
   var r,
     a,
@@ -308,66 +310,60 @@ class SVGIcon extends HTMLElement {
   }
 
   get size() {
-    return this.hasAttribute('size') ? +this.getAttribute('size') : 24
+    // return `size` attr, else default global size
+    return this.hasAttribute('size') ? +this.getAttribute('size') : config?.size
   }
 
   get src() {
-    if (this.hasAttribute('src')) {
-      if (this.getAttribute('src') == '') {
-        return 'icons'
-      }
-      return this.getAttribute('src').replace(/\/$/, '')
-    }
-    //default source
-    return 'icons'
+    // return `src` attr, else default global src
+    // remove the end-slash from the src url
+    return this.hasAttribute('src') ?
+      this.getAttribute('src') == '' ? config?.src : this.getAttribute('src').replace(/\/$/, '')
+      : config?.src
   }
 
   get color() {
-    const svgElement = document.getElementsByTagName('svg-icon')[0]
-    if (this.hasAttribute('color')) {
-      //checking for color attribute
-      return this.getAttribute('color')
-    } else if (svgElement.parentElement?.style?.color) {
-      //checking for color of parent element
-      return svgElement?.parentElement?.style?.color
-    }
-    //default color
-    return 'black'
+    // return `color` attr, else parent's css-color, else default global color
+    return this.hasAttribute('color') ? this.getAttribute('color') :
+      this.parentElement?.style?.color ? this.parentElement?.style?.color : config?.color
   }
 
   get name() {
-    if (this.hasAttribute('name')) {
-      return this.getAttribute('name')
-    }
-    return ''
+    // return `name` attr, else tag's text-content, else default global icon name
+    return this.hasAttribute('name') ? this.getAttribute('name') :
+      this.innerHTML ? this.innerHTML : config?.name
   }
 
   connectedCallback() {
+    // create sized Image to inject svg
     const icon = new Image(this.size, this.size)
-    //dynamically adding source property on image based on the provided attributes
+
+    // if `src` attr is svg link, directly insert it. else use it as root directory
     if (this.src?.slice(-4) == '.svg') {
       icon.src = this.src
-    } else if (this.name) {
-      icon.src = `${this.src}/${this.name}.svg`
     } else {
-      icon.src = `${this.src}/icon.svg`
+      icon.src = `${this.src}/${this.name}.svg`
     }
-    //Injecting svg to img
+
+    //injecting svg to img
     SVGInject(icon)
+
     //changing fill property of svg
     icon.style.fill = this.color
+
     //making a shadowRoot
     const shadowRoot = this.attachShadow({ mode: 'open' })
     shadowRoot.appendChild(icon)
     //accessing the path tags of svg and change the fill property
-    setTimeout(() => {
-      let svgChilds = document.getElementsByTagName('svg-icon')[0].shadowRoot.childNodes[0].childNodes
-      for (let i = 0; i < svgChilds.length; i++) {
-        if (svgChilds[i].style) {
-          svgChilds[i].style.fill = this.color
+    setTimeout((() => {
+      let svgChildren = this.shadowRoot.childNodes[0].childNodes
+      for (let i = 0; i < svgChildren.length; i++) {
+        if (svgChildren[i].style) {
+          svgChildren[i].style.fill = this.color
         }
       }
-    }, 50)
+    }).bind(this), 50)
   }
 }
+
 customElements.define('svg-icon', SVGIcon)
