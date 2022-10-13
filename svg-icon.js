@@ -1,5 +1,7 @@
+// import serverConfig
 import { config } from './svg-icon.config.js';
 
+// module function
 !(function (o, l) {
   var r,
     a,
@@ -63,7 +65,7 @@ import { config } from './svg-icon.config.js';
         m,
         h = e[g]('*'),
         y = e
-      for (i = -1; y != x; ) {
+      for (i = -1; y != x;) {
         if (y.localName == E)
           (m =
             (p = y.textContent) &&
@@ -78,10 +80,10 @@ import { config } from './svg-icon.config.js';
                 p.replace(f, function (e, r) {
                   return c && (c[r] = 1), 'url(#' + r + a + ')'
                 })) !== p && y[k](v, m)
-          ;['xlink:href', 'href'].forEach(function (e) {
-            var r = y[w](e)
-            ;/^\s*#/.test(r) && ((r = r.trim()), y[k](e, r + a), c && (c[r.substring(1)] = 1))
-          })
+              ;['xlink:href', 'href'].forEach(function (e) {
+                var r = y[w](e)
+                  ; /^\s*#/.test(r) && ((r = r.trim()), y[k](e, r + a), c && (c[r.substring(1)] = 1))
+              })
         }
         y = h[++i]
       }
@@ -142,7 +144,7 @@ import { config } from './svg-icon.config.js';
     console.error('SVGInject: ' + e)
   }
   function i(e, r, t) {
-    ;(e[A] = c), t.onFail ? t.onFail(e, r) : n(r)
+    ; (e[A] = c), t.onFail ? t.onFail(e, r) : n(r)
   }
   function D(e, r) {
     m(e), i(e, L, r)
@@ -154,7 +156,7 @@ import { config } from './svg-icon.config.js';
     i(e, I, r)
   }
   function q(e) {
-    ;(e.onload = x), (e.onerror = x)
+    ; (e.onload = x), (e.onerror = x)
   }
   function R(e) {
     n('no img element')
@@ -176,9 +178,9 @@ import { config } from './svg-icon.config.js';
           else
             for (
               var i = function () {
-                  ++t == n && e()
-                },
-                o = 0;
+                ++t == n && e()
+              },
+              o = 0;
               o < n;
               o++
             )
@@ -199,11 +201,11 @@ import { config } from './svg-icon.config.js';
           var i = []
           u[A] = i
           var l = function () {
-              e(),
-                i.forEach(function (e) {
-                  e()
-                })
-            },
+            e(),
+              i.forEach(function (e) {
+                e()
+              })
+          },
             s = (function f(e) {
               return (j.href = e), j.href
             })(n),
@@ -214,7 +216,7 @@ import { config } from './svg-icon.config.js';
                 (h[s].forEach(function (e) {
                   e(r)
                 }),
-                (h[s] = r))
+                  (h[s] = r))
             }
           if (d) {
             var o,
@@ -230,28 +232,28 @@ import { config } from './svg-icon.config.js';
                     (t === x
                       ? ((t = P((r = _(n, !1)), !1)), (e[0] = t), (e[2] = t && T(r)))
                       : t &&
-                        (n = (function o(e) {
-                          return e.replace(S, C + O++)
-                        })(i))),
+                      (n = (function o(e) {
+                        return e.replace(S, C + O++)
+                      })(i))),
                     (r = r || _(n, !1)),
                     V(u, r, s, c)
                 }
                 l()
               }
             if (typeof (o = h[s]) != y) return void (o.isCallbackQueue ? o.push(a) : a(o))
-            ;((o = []).isCallbackQueue = !0), (h[s] = o)
+              ; ((o = []).isCallbackQueue = !0), (h[s] = o)
           }
           !(function m(e, r, t) {
             if (e) {
               var n = new XMLHttpRequest()
-              ;(n.onreadystatechange = function () {
-                if (4 == n.readyState) {
-                  var e = n.status
-                  200 == e ? r(n.responseXML, n.responseText.trim()) : 400 <= e ? t() : 0 == e && t()
-                }
-              }),
-                n.open('GET', e, !0),
-                n.send()
+                ; (n.onreadystatechange = function () {
+                  if (4 == n.readyState) {
+                    var e = n.status
+                    200 == e ? r(n.responseXML, n.responseText.trim()) : 400 <= e ? t() : 0 == e && t()
+                  }
+                }),
+                  n.open('GET', e, !0),
+                  n.send()
             }
           })(
             s,
@@ -262,7 +264,7 @@ import { config } from './svg-icon.config.js';
                 var i = n(t, r) || t
                 if (i) {
                   var o = 'string' == typeof i
-                  ;(r = o ? i : T(t)), (t = o ? _(i, !0) : i)
+                    ; (r = o ? i : T(t)), (t = o ? _(i, !0) : i)
                 }
               }
               if (t instanceof SVGElement) {
@@ -284,13 +286,13 @@ import { config } from './svg-icon.config.js';
     }
     return (
       G &&
-        (function i(e) {
-          var r = l[g]('head')[0]
-          if (r) {
-            var t = l[s](E)
-            ;(t.type = 'text/css'), t.appendChild(l.createTextNode(e)), r.appendChild(t)
-          }
-        })('img[onload^="' + e + '("]{visibility:hidden;}'),
+      (function i(e) {
+        var r = l[g]('head')[0]
+        if (r) {
+          var t = l[s](E)
+            ; (t.type = 'text/css'), t.appendChild(l.createTextNode(e)), r.appendChild(t)
+        }
+      })('img[onload^="' + e + '("]{visibility:hidden;}'),
       (n.setOptions = function (e) {
         t = p(t, e)
       }),
@@ -304,6 +306,7 @@ import { config } from './svg-icon.config.js';
   'object' == typeof module && 'object' == typeof module.exports && (module.exports = e)
 })(window, document)
 
+// SVGIcon class
 class SVGIcon extends HTMLElement {
   constructor() {
     super()
@@ -342,6 +345,14 @@ class SVGIcon extends HTMLElement {
     if (this.src?.slice(-4) == '.svg') {
       icon.src = this.src
     } else {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        // convert image file to base64 string
+        console.log(reader);
+        preview.src = reader.result;
+      }, false);
+
+      // reader.readAsDataURL(`${this.src}\/${this.name}.svg`);
       icon.src = `${this.src}/${this.name}.svg`
     }
 

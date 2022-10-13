@@ -1,0 +1,53 @@
+<script type="module" src="svg-icon.js"></script>
+<html>
+  <head>
+    <style>
+      .example {
+        font-size: 1.5rem;
+        width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body style="padding: 100px">
+    <!-- default -->
+    <div class="example">
+      default
+      <svg-icon></svg-icon>
+    </div>
+
+    <!-- parent's color -->
+    <div class="example" style="color: red">
+      parent's color
+      <svg-icon></svg-icon>
+    </div>
+
+    <!-- name | slot -->
+    <div class="example">
+      name | slot
+      <svg-icon>logos/github</svg-icon>
+      <svg-icon name="logos/github"></svg-icon>
+    </div>
+
+    <!-- size -->
+    <div class="example">
+      size
+      <svg-icon size="80"></svg-icon>
+    </div>
+
+    <!-- color -->
+    <div class="example">
+      color
+      <svg-icon color="blue"></svg-icon>
+    </div>
+
+    <!-- full src | src -->
+    <div class="example">
+      full src | src
+      <svg-icon src="icons/logos/github.svg"></svg-icon>
+      <svg-icon src="icons/logos">github</svg-icon>
+    </div>
+  </body>
+</html>

@@ -1,13 +1,13 @@
 // global setting for default svg icon attributes
 export let config = {
   // svg size (px)
-  size: 160,
+  size: 36,
 
   // svg color
-  color: 'green',
+  color: 'black',
 
   // svg icon name
-  name: 'icons',
+  name: 'logos/logo',
 
   // icons' root directory
   src: 'icons',
