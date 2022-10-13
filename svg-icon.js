@@ -332,9 +332,8 @@ class SVGIcon extends HTMLElement {
   }
 
   get name() {
-    // return `name` attr, else tag's text-content, else default global icon name
-    return this.hasAttribute('name') ? this.getAttribute('name') :
-      this.innerHTML ? this.innerHTML : config?.name
+    // return tag's text-content, else default global icon name
+    return this.innerHTML ? this.innerHTML : config?.name
   }
 
   connectedCallback() {
@@ -345,14 +344,6 @@ class SVGIcon extends HTMLElement {
     if (this.src?.slice(-4) == '.svg') {
       icon.src = this.src
     } else {
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        // convert image file to base64 string
-        console.log(reader);
-        preview.src = reader.result;
-      }, false);
-
-      // reader.readAsDataURL(`${this.src}\/${this.name}.svg`);
       icon.src = `${this.src}/${this.name}.svg`
     }
 
