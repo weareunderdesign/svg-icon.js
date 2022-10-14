@@ -55,7 +55,6 @@
       let hArr = iconsHtmlHref.split('/')
       hArr.pop()
       let iconsDirUrl = hArr.join('/')
-
       // main Fetch function
       const fetchSVGIcons = async () => {
         // get /icons directory structure html
@@ -63,59 +62,58 @@
           url: iconsDirUrl,
           type: 'GET',
         })
-
         // get /icons/category code part from the /icons directory html
-        let categoryAddRowList = categoryHtml.match(/addRow\("(\w|-)+"/g)
-
-        for (let categoryAddRow of categoryAddRowList) {
+        let categoryAddRowList = $(categoryHtml).find('a')
+        for (let i = 0 ; i < categoryAddRowList.length ; i ++) {
           // get category name
-          let categoryName = categoryAddRow.match(/".*"/g)[0]
-          categoryName = categoryName.substr(1, categoryName.length - 2)
+          if ($(categoryAddRowList[i]).parent().parent().find('td').find('img').attr('alt') == '[DIR]'){
+            let categoryName = $(categoryAddRowList[i])[0].innerHTML
+            categoryName = categoryName.substring(0, categoryName.length - 1)
+            // get /icons/category directory url
+            let iconCategoryDirUrl = iconsDirUrl + "/" + categoryName
 
-          // get /icons/category directory url
-          let iconCategoryDirUrl = iconsDirUrl + "/" + categoryName
+            // get /icons/category directory structure html
+            let iconsHtml = await $.ajax({
+              url: iconCategoryDirUrl,
+              type: 'GET',
+            })
 
-          // get /icons/category directory structure html
-          let iconsHtml = await $.ajax({
-            url: iconCategoryDirUrl,
-            type: 'GET',
-          })
+            // get /icons/category/icon-name code part from the /icons/category directory html
+            let iconAddRowList = $(iconsHtml).find('a')
+            let svgIconNames = []
+            for (let i = 0 ; i < iconAddRowList.length ;  i ++) {
+              // get icon-name
+              if ($(iconAddRowList[i]).parent().parent().find('td').find('img').attr('alt') == '[IMG]'){
+                let iconName = $(iconAddRowList[i]).attr('href')
+                iconName = iconName.substring(0, iconName.length - 4)
+                svgIconNames.push(iconName)
+              }
+            }
 
-          // get /icons/category/icon-name code part from the /icons/category directory html
-          let iconAddRowList = iconsHtml.match(/addRow\("(\w|-)+\.svg"/g)
-
-          let svgIconNames = []
-          for (let iconAddRow of iconAddRowList) {
-            // get icon-name
-            let iconName = iconAddRow.match(/".*"/g)[0]
-            iconName = iconName.substr(1, iconName.length - 6)
-            svgIconNames.push(iconName)
-          }
-
-          // build html for the category section
-          let categorySectionHtml = `
-            <div>
-              <!-- Category Label -->
+            // build html for the category section
+            let categorySectionHtml = `
               <div>
-                <h5 id="${categoryName}" class="category-label">${categoryName}</h5>
-              </div>
+                <!-- Category Label -->
+                <div>
+                  <h5 id="${categoryName}" class="category-label">${categoryName}</h5>
+                </div>
 
-              <!-- SVGIcons -->
-              <div>`
-          for (let svgIconName of svgIconNames) {
+                <!-- SVGIcons -->
+                <div>`
+            for (let svgIconName of svgIconNames) {
+              categorySectionHtml += `
+                  <svg-icon size="12" class="${categoryName}-icon" src="./">${categoryName}/${svgIconName}</svg-icon>
+                `
+            }
             categorySectionHtml += `
-                <svg-icon size="12" class="${categoryName}-icon" src="./">
-                  ${categoryName}/${svgIconName}
-                </svg-icon>
-              `
-          }
-          categorySectionHtml += `
+                </div>
               </div>
-            </div>
-          `
+            `
 
-          // append to the div#content at icons.html
-          $('#content').append(categorySectionHtml)
+            // append to the div#content at icons.html
+            $('#content').append(categorySectionHtml)
+          }
+
         }
 
         // add event handlers after html page is completed
