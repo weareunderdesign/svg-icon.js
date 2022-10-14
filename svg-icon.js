@@ -333,7 +333,7 @@ class SVGIcon extends HTMLElement {
 
   get name() {
     // return tag's text-content, else default global icon name
-    return this.innerHTML ? this.innerHTML : config?.name
+    return this.innerHTML ? this.innerHTML.replace(/\s+/g, "") : config?.name
   }
 
   connectedCallback() {

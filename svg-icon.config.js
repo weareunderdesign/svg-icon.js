@@ -1,7 +1,7 @@
 // global setting for default svg icon attributes
 export let config = {
   // svg size (px)
-  size: 36,
+  size: 24,
 
   // svg color
   color: 'black',
