@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- meta info -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- rene.css -->
+    <link rel="stylesheet" href="https://unpkg.com/renecss/dist/rene.min.css" />
+
+    <!-- SVGIcon module js -->
+    <script type="module" src="../svg-icon.js"></script>
+
+    <!-- main js file -->
+    <script type="module" src="./icons.js"></script>
+
+    <!-- page title -->
+    <title>Icons</title>
+  </head>
+
+  <body>
+    <!-- ******************** container begin ******************** -->
+    <div style="padding: 0px 100px 100px 100px">
+      <!-- Logo -->
+      <div>
+        <svg-icon class="post-icon" size="140" src="./">logos/logo</svg-icon>
+      </div>
+
+      <!-- Header -->
+      <div>
+        <!-- Left Panel -->
+        <div>
+          <h1>Raincons</h1>
+          <h4>
+            12x12 icons designed for clean, minimal, and info-rich interfaces.
+            By the Rainbow team.
+          </h4>
+        </div>
+        <!-- Right Panel -->
+        <div>
+          <div>
+            <svg-icon size="12" class="post-icon" src="./"
+              >logos/github</svg-icon
+            >
+            <a href="#">View on GitHub</a>
+          </div>
+          <div>
+            <svg-icon size="12" class="post-icon" src="./"
+              >logos/figma</svg-icon
+            >
+            <a href="#">Open in Figma</a>
+          </div>
+          <div>
+            <svg-icon size="12" class="post-icon" src="./"
+              >objects/image</svg-icon
+            >
+            <a href="#">Download SVG</a>
+          </div>
+          <div>
+            <svg-icon size="12" class="post-icon" src="./">logos/npm</svg-icon>
+            <a href="#">Install with NPM</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Input -->
+      <div>
+        <input id="searchInput" type="text" placeholder="Search" />
+      </div>
+
+      <!-- Content -->
+      <div id="content">
+        <!-- Here, icons.js fetch all of the svg icons from /icons directory -->
+      </div>
+    </div>
+    <!-- ******************** container end ******************** -->
+  </body>
+</html>
