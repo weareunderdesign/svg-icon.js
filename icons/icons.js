@@ -64,12 +64,18 @@
         })
         // get /icons/category code part from the /icons directory html
         let categoryATagList = $(categoryHtml).find('a')
+        let uncategorized = []
+        let uncategorizedHtml = ``
+        let categorySectionHtml = ''
         for (let i = 0; i < categoryATagList.length; i++) {
           // get a tag's innerHTML and href attr
           let a_href = $(categoryATagList[i]).attr('href')
           let a_content = $(categoryATagList[i])[0].innerHTML
           // if  does not contain innerHTML or does contain '.', continue.
           if (a_href.search(a_content) == -1 || a_content.includes('.')) {
+            if (a_content.search('.svg') != -1) {
+              uncategorized.push(a_content.substring(0, a_content.length - 4))
+            }
             continue
           }
           let categoryName = a_content
@@ -101,7 +107,7 @@
           }
 
           // build html for the category section
-          let categorySectionHtml = `
+          categorySectionHtml += `
             <div>
               <!-- Category Label -->
               <div>
@@ -119,9 +125,30 @@
               </div>
             </div>
           `
-          // append to the div#content at icons.html
-          $('#content').append(categorySectionHtml)
         }
+        // append uncategorized svg-icons
+        if (uncategorized.length > 0) {
+          let categoryName = 'uncategorized'
+          uncategorizedHtml = `
+            <div>
+              <!-- Category Label -->
+              <div>
+                <h5 id="${categoryName}" class="category-label">${categoryName}</h5>
+              </div>
+
+              <!-- SVGIcons -->
+              <div>`
+          for (let i = 0; i < uncategorized.length; i++) {
+            uncategorizedHtml += `
+                <svg-icon size="12" class="${categoryName}-icon" src="./">${uncategorized[i]}</svg-icon>
+              `
+          }
+          uncategorizedHtml += `
+              </div>
+            </div>
+          `
+        }
+        $('#content').append(uncategorizedHtml + categorySectionHtml)
 
         // add event handlers after html page is completed
         // filter when keyboard is released
