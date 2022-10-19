@@ -10,6 +10,7 @@
   ],
   "license": "ISC",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "svg-icon.min": "webpack --config bundler.config.js"
   },
   "devDependencies": {
