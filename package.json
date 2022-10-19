@@ -1,0 +1,19 @@
+{
+  "name": "@toptalent0411/svg-icon.js",
+  "version": "1.0.0",
+  "description": "js library which allows you to use svg-icon tag <svg-icon></svg-icon>",
+  "main": "dist/svg-icon.min.js",
+  "unpkg": "dist/svg-icon.min.js",
+  "author": "Top Talent",
+  "keywords": [
+    "svg-icon"
+  ],
+  "license": "ISC",
+  "scripts": {
+    "svg-icon.min": "webpack --config bundler.config.js"
+  },
+  "devDependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

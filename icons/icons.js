@@ -118,7 +118,7 @@
               <div>`
           for (let svgIconName of svgIconNames) {
             categorySectionHtml += `
-                <svg-icon size="12" class="${categoryName}-icon" src="./">${categoryName}/${svgIconName}</svg-icon>
+                <svg-icon size="12" class="${categoryName}-icon">${categoryName}/${svgIconName}</svg-icon>
               `
           }
           categorySectionHtml += `
@@ -140,7 +140,7 @@
               <div>`
           for (let i = 0; i < uncategorized.length; i++) {
             uncategorizedHtml += `
-                <svg-icon size="12" class="${categoryName}-icon" src="./">${uncategorized[i]}</svg-icon>
+                <svg-icon size="12" class="${categoryName}-icon">${uncategorized[i]}</svg-icon>
               `
           }
           uncategorizedHtml += `
@@ -203,7 +203,7 @@
         $('svg-icon:not(.post-icon)').click(function () {
           // get iconName from svg-icon
           let iconName = $(this)[0].innerHTML
-          let iconHtml = `<svg-icon>${iconName}<svg-icon>`
+          let iconHtml = `<svg-icon>${iconName}</svg-icon>`
 
           // copy iconName to clipboard
           let dummy = document.createElement("textarea")
