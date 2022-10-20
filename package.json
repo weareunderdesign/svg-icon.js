@@ -1,5 +1,5 @@
 {
-  "name": "@rainbowapp/svg-icon.js",
+  "name": "iconsvgjs",
   "version": "1.0.1",
   "description": "js library which allows you to use svg-icon tag <svg-icon></svg-icon>",
   "main": "dist/svg-icon.min.js",
@@ -10,6 +10,7 @@
   ],
   "license": "ISC",
   "scripts": {
+    "iconsvgjs": "npm i degit && degit rnbwdev/svg-icon-template --force",
     "svg-icon.min": "webpack --config bundler.config.js"
   },
   "devDependencies": {
