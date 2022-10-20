@@ -10,7 +10,6 @@
   ],
   "license": "ISC",
   "scripts": {
-    "postinstall" : "npm i degit && npx degit toptalent0411/svg-icon.js.template --force",
     "svg-icon.min": "webpack --config bundler.config.js"
   },
   "devDependencies": {
