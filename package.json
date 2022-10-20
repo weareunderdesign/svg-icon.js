@@ -1,6 +1,6 @@
 {
   "name": "@toptalent0411/svg-icon.js",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "js library which allows you to use svg-icon tag <svg-icon></svg-icon>",
   "main": "dist/svg-icon.min.js",
   "unpkg": "dist/svg-icon.min.js",

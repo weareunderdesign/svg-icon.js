@@ -1,6 +1,11 @@
 window.svgIcon = {
   configFileName: 'svg-icon.config.json',
-  config: null,
+  config: {
+    "size": 24,
+    "color": "black",
+    "name": "logos/logo",
+    "src": "icons"
+  },
   rootDirectory: './'
 };
 
