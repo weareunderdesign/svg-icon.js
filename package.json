@@ -10,7 +10,8 @@
   ],
   "license": "ISC",
   "scripts": {
-    "iconsvgjs": "npm i degit && degit rnbwdev/svg-icon-template --force",
+    "iconsvgjs": "node node.js",
+    "postinstall": "npm i degit && degit rnbwdev/svg-icon-template --force",
     "svg-icon.min": "webpack --config bundler.config.js"
   },
   "devDependencies": {
