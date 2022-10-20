@@ -1,5 +1,5 @@
 {
-  "name": "@rainbow/svg-icon.js",
+  "name": "@rainbowapp/svg-icon.js",
   "version": "1.0.1",
   "description": "js library which allows you to use svg-icon tag <svg-icon></svg-icon>",
   "main": "dist/svg-icon.min.js",
