@@ -9,10 +9,10 @@ exec("npm install --save iconsvgjs", (error, stdout, stderr) => {
     return;
   }
   if (stderr) {
-    console.log(`stderr: ${stderr}`);
+    console.log(`${stderr}`);
     return;
   }
-  console.log(`stdout: ${stdout}`);
+  console.log(`${stdout}`);
 
   // install degit package as dev-dependency
   exec("npm install --save-dev degit", (error, stdout, stderr) => {
@@ -21,10 +21,10 @@ exec("npm install --save iconsvgjs", (error, stdout, stderr) => {
       return;
     }
     if (stderr) {
-      console.log(`stderr: ${stderr}`);
+      console.log(`${stderr}`);
       return;
     }
-    console.log(`stdout: ${stdout}`);
+    console.log(`${stdout}`);
 
     // download the template structure of iconsvgjs
     exec("degit toptalent0411/svg-icon-template --force", (error, stdout, stderr) => {
@@ -33,10 +33,10 @@ exec("npm install --save iconsvgjs", (error, stdout, stderr) => {
         return;
       }
       if (stderr) {
-        console.log(`stderr: ${stderr}`);
+        console.log(`${stderr}`);
         return;
       }
-      console.log(`stdout: ${stdout}`);
+      console.log(`${stdout}`);
     });
   });
 });
