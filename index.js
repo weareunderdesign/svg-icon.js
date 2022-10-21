@@ -1,5 +1,15 @@
 #!/usr/bin/env node
 
-const args = process.argv
+const { exec } = require("child_process");
 
-console.log('args', args)
+exec("npm i iconsvgjs", (error, stdout, stderr) => {
+    if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+});

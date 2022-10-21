@@ -1,6 +1,6 @@
 {
   "name": "iconsvgjs",
-  "version": "1.0.4",
+  "version": "1.0.10",
   "description": "js library which allows you to use svg-icon tag <svg-icon></svg-icon>",
   "main": "dist/svg-icon.min.js",
   "unpkg": "dist/svg-icon.min.js",
