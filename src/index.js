@@ -27,7 +27,7 @@ exec("npm install --save iconsvgjs", (error, stdout, stderr) => {
     console.log(`${stdout}`);
 
     // download the template structure of iconsvgjs
-    exec("degit toptalent0411/svg-icon-template --force", (error, stdout, stderr) => {
+    exec("degit rnbwdev/svg-icon-template --force", (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);
         return;
