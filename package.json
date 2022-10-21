@@ -1,6 +1,6 @@
 {
   "name": "iconsvgjs",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "js library which allows you to use svg-icon tag <svg-icon></svg-icon>",
   "main": "dist/svg-icon.min.js",
   "unpkg": "dist/svg-icon.min.js",
@@ -10,12 +10,11 @@
   ],
   "license": "ISC",
   "scripts": {
-    "postinstall": "npm i degit && degit rnbwdev/svg-icon-template --force",
     "svg-icon.min": "webpack --config bundler.config.js"
   },
   "devDependencies": {
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
-  "bin": "./index.js"
+  "bin": "./src/index.js"
 }
