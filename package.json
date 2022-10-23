@@ -1,6 +1,6 @@
 {
-  "name": "@rainbowapp/svg-icon.js",
-  "version": "1.0.1",
+  "name": "iconsvgjs",
+  "version": "1.0.0",
   "description": "js library which allows you to use svg-icon tag <svg-icon></svg-icon>",
   "main": "dist/svg-icon.min.js",
   "unpkg": "dist/svg-icon.min.js",
@@ -15,5 +15,6 @@
   "devDependencies": {
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
-  }
+  },
+  "bin": "./src/index.js"
 }
