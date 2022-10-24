@@ -2,8 +2,8 @@
 
 const { exec } = require("child_process");
 
-// install iconsvgjs package as dependency
-exec("npm install --save iconsvgjs", (error, stdout, stderr) => {
+// install @rainbow/svg-icon.js package as dependency
+exec("npm install --save @rainbow/svg-icon.js", (error, stdout, stderr) => {
   if (error) {
     console.log(`error: ${error.message}`);
     return;
@@ -26,7 +26,7 @@ exec("npm install --save iconsvgjs", (error, stdout, stderr) => {
     }
     console.log(`${stdout}`);
 
-    // download the template structure of iconsvgjs
+    // download the template structure of @rainbow/svg-icon.js
     exec("degit rnbwdev/svg-icon-template --force", (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);
