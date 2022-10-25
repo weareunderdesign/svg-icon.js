@@ -44,23 +44,18 @@ Considering you already have a NPM account, with NPM and Node.js installed on yo
 
    > You might also be asked for a `one-time-password` if there is 2FA applied on your account.
    >
-2. We use `np` to simplify the process of publishing.
-   Install the `np` package globally by entering the command below. (Skip this step if np is already installed)
-
+2. Set the package semantic version correctly at `package.json`.
    ```
-   npm install --global np
+   {
+    ...
+   "version": "*.*.*",
+    ...
+   }
    ```
-3. Ensure there is nothing left to commit and commit any pending work.
-   Then run the below command.
-
+3. Then run the below command to publish the new version of package.
    ```
-   np
+   npm --access=public publish
    ```
-
-   `np` will now ask you to select the [SemVer](https://semver.org/) number as part of the versioning process. Select the appropriate update type.
-
-   Next `np` will ask to verify your selection. Hit `Y` to continue.
-4. Once publishing is completed, `np` will prompt a browser window for adding the release notes to GitHub. Fill in the details.
 
 That’s all! Your package is published!
 
@@ -83,4 +78,3 @@ Contributions are always welcome and can be a quick way to get your fix or impro
 > Search for existing Issues and PRs before creating your own
 
 > If you find an Issue that addresses your problem, please add your reproduction information to the existing issue rather than creating a new one. Adding a reaction can also help indicate to our maintainers that a particular problem is affecting more than just the reporter.
->
