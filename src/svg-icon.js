@@ -2,7 +2,6 @@ window.svgIcon = {
   configFileName: 'svg-icon.config.json',
   config: {
     "size": 24,
-    "color": "black",
     "name": "logos/logo",
     "src": "icons"
   },
@@ -397,9 +396,8 @@ function defineSvgIcon(config) {
     }
 
     get color() {
-      // return `color` attr, else parent's css-color, else default global color
-      return this.hasAttribute('color') ? this.getAttribute('color') :
-        this.parentElement?.style?.color ? this.parentElement?.style?.color : config?.color
+      // return `color` attr, else inherited color
+      return this.hasAttribute('color') ? this.getAttribute('color') : $(this).css('color')
     }
 
     get name() {
