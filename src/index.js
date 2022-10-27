@@ -2,7 +2,7 @@
 
 const { exec } = require("child_process");
 
-// install @rainbow/svg-icon.js package as dependency
+// install the main package as dependency
 exec("npm install --save @rainbowapp/svg-icon.js", (error, stdout, stderr) => {
   if (error) {
     console.log(`error: ${error.message}`);
@@ -26,7 +26,7 @@ exec("npm install --save @rainbowapp/svg-icon.js", (error, stdout, stderr) => {
     }
     console.log(`${stdout}`);
 
-    // download the template structure of @rainbow/svg-icon.js
+    // download the template structure of the main package
     exec("degit rnbwdev/svg-icon-template --force", (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);
@@ -40,4 +40,3 @@ exec("npm install --save @rainbowapp/svg-icon.js", (error, stdout, stderr) => {
     });
   });
 });
-
