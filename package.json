@@ -1,6 +1,6 @@
 {
   "name": "@rainbowapp/svg-icon.js",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "js library which allows you to use svg-icon tag <svg-icon></svg-icon>",
   "main": "dist/svg-icon.min.js",
   "unpkg": "dist/svg-icon.min.js",

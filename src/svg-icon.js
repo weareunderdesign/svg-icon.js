@@ -434,6 +434,8 @@ function defineSvgIcon(config) {
         for (let i = 0; i < svgChildren.length; i++) {
           if (svgChildren[i].style) {
             svgChildren[i].style.fill = this.color
+          } else {
+            svgChildren[i].style = { fill: this.color }
           }
         }
       }).bind(this), 50)
