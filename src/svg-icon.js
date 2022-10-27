@@ -29,7 +29,6 @@ window.svgIcon = {
 
   checkReady(function ($) {
     $(document).on('ready', () => {
-      alert(123)
       $(function () {
         // get current html href
         let currentHtmlHref = window.location.href
