@@ -9,15 +9,20 @@ window.svgIcon = {
 };
 
 (function () {
-  // load jquery js
-  let script = document.createElement("SCRIPT")
-  script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
-  script.type = 'text/javascript'
-  document.getElementsByTagName("head")[0].appendChild(script)
+  console.log('svg-icon.js begin');
+  if (!window.jQuery) {
+    console.log('svg-icon.js jquery load begin');
+    // load jquery js
+    let script = document.createElement("SCRIPT")
+    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
+    script.type = 'text/javascript'
+    document.getElementsByTagName("head")[0].appendChild(script)
+  }
 
   // poll for jQuery to come into existence
   let checkReady = function (callback) {
     if (window.jQuery) {
+      console.log('svg-icon.js jquery load end');
       callback(jQuery)
     } else {
       window.setTimeout(function () { checkReady(callback) }, 20)
@@ -26,6 +31,7 @@ window.svgIcon = {
 
   checkReady(function ($) {
     $(document).on('ready', () => {
+      console.log('svg-icon.js document ready');
       $(function () {
         // get current html href
         let currentHtmlHref = window.location.href
