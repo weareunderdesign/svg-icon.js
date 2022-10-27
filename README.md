@@ -11,13 +11,13 @@ An SVG icon component for the web. Optimized for smooth design and development e
 1. Install with NPX:
 
    ```
-   npx @rainbowapp/svg-icon.js
+   npx rainbowsvgiconjs
    ```
 
    Or, you can get it going quickly with Unpkg CDN:
 
    ```
-   <script src="https://unpkg.com/@rainbowapp/svg-icon.js/dist/svg-icon.min.js"></script>
+   <script src="https://unpkg.com/rainbowsvgiconjs/dist/svg-icon.min.js"></script>
    ```
 2. Place all of your icons in the new `/icons` folder created at your root directory (or create it yourself).
 3. Use `icons/svg-icon.config.json` (or create it yourself) to set the default `source`, `color` and `size`.
