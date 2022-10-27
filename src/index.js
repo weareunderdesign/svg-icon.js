@@ -15,7 +15,7 @@ exec("npm install --save @rainbowapp/svg-icon.js", (error, stdout, stderr) => {
   console.log(`${stdout}`);
 
   // install degit package as dev-dependency
-  exec("npm install -g degit", (error, stdout, stderr) => {
+  exec("npm install --save-dev degit", (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
       return;
