@@ -18,10 +18,7 @@ window.svgIcon = {
   // poll for jQuery to come into existence
   let checkReady = function (callback) {
     if (window.jQuery) {
-      $(document).on('ready', () => {
-        alert(123)
-        callback(jQuery)
-      })
+      callback(jQuery)
     } else {
       window.setTimeout(function () { checkReady(callback) }, 20)
     }
