@@ -28,19 +28,22 @@ window.svgIcon = {
   }
 
   checkReady(function ($) {
-    $(function () {
-      // get current html href
-      let currentHtmlHref = window.location.href
+    $(document).on('ready', () => {
+      alert(123)
+      $(function () {
+        // get current html href
+        let currentHtmlHref = window.location.href
 
-      // get configFileData
-      findConfig(currentHtmlHref)
-        .then((configFileData) => {
-          if (configFileData) {
-            window.svgIcon.config = configFileData
-          }
-          // define my custom element <svg-icon></svg-icon>
-          defineSvgIcon(window.svgIcon.config)
-        })
+        // get configFileData
+        findConfig(currentHtmlHref)
+          .then((configFileData) => {
+            if (configFileData) {
+              window.svgIcon.config = configFileData
+            }
+            // define my custom element <svg-icon></svg-icon>
+            defineSvgIcon(window.svgIcon.config)
+          })
+      })
     })
   })
 })()
