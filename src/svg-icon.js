@@ -4,7 +4,7 @@ window.svgIcon = {
   config: {
     "size": 24,
     "name": "logos/logo",
-    "src": "icons"
+    "src": "./"
   },
   rootDirectory: './'
 };
@@ -25,12 +25,12 @@ window.svgIcon = {
 
   // start polling
   checkReady(() => {
-    (async () => {
+    (() => {
       // get current html href
       let currentHtmlHref = window.location.href
 
       // get configFileData
-      const configFileData = await findConfig(currentHtmlHref)
+      const configFileData = findConfig(currentHtmlHref)
       if (configFileData) {
         window.svgIcon.config = configFileData
       }
