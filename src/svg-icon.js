@@ -1,3 +1,4 @@
+// global variable promise for svg-icon web component
 window.svgIcon = {
   configFileName: 'svg-icon.config.json',
   config: {
@@ -18,33 +19,29 @@ window.svgIcon = {
   }
 
   // poll for jQuery to come into existence
-  let checkReady = function (callback) {
-    if (window.jQuery) {
-      callback(jQuery)
-    } else {
-      window.setTimeout(function () { checkReady(callback) }, 20)
-    }
+  let checkReady = function (cb) {
+    window.jQuery ? cb() : window.setTimeout(function () { checkReady(cb) }, 20)
   }
 
-  checkReady(function ($) {
-    $(function () {
+  // start polling
+  checkReady(() => {
+    (async () => {
       // get current html href
       let currentHtmlHref = window.location.href
 
       // get configFileData
-      findConfig(currentHtmlHref)
-        .then((configFileData) => {
-          if (configFileData) {
-            window.svgIcon.config = configFileData
-          }
-          // define my custom element <svg-icon></svg-icon>
-          defineSvgIcon(window.svgIcon.config)
-        })
-    })
+      const configFileData = await findConfig(currentHtmlHref)
+      if (configFileData) {
+        window.svgIcon.config = configFileData
+      }
+
+      // define my custom element <svg-icon></svg-icon>
+      defineSvgIcon(window.svgIcon.config)
+    })()
   })
 })()
 
-// find the sibling config js file based on href
+// find the sibling config js file based on href, else search through parent nodes
 const findConfig = async (href) => {
   // get the current directory config url
   let hArr = href.split('/')
@@ -71,7 +68,7 @@ const findConfig = async (href) => {
   return config ? config : findConfig(currentDirUrl)
 }
 
-// define custom element svg-icon
+// define web component svg-icon
 function defineSvgIcon(config) {
   // module function
   !(function (o, l) {
@@ -378,7 +375,7 @@ function defineSvgIcon(config) {
     'object' == typeof module && 'object' == typeof module.exports && (module.exports = e)
   })(window, document)
 
-  // SVGIcon class
+  // SVGIcon Web Component class
   class SVGIcon extends HTMLElement {
     constructor() {
       super()
@@ -409,10 +406,28 @@ function defineSvgIcon(config) {
     }
 
     connectedCallback() {
+      // store property color to use it inside the mutations
+      let svgColor = this.color
+      // create observer to detect if the svg-icon is rendered inside the shadowRoot
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          //Detect <img> insertion
+          if (mutation.addedNodes.length) {
+            // apply the svgColor to all of the svg's childNodes
+            let svgChildNodes = mutation.addedNodes[0].childNodes
+            for (let i = 0; i < svgChildNodes.length; i++) {
+              if (svgChildNodes[i].style) {
+                svgChildNodes[i].style.fill = svgColor
+              }
+            }
+          }
+        })
+      })
+
       // create sized Image to inject svg
       const icon = new Image(this.size, this.size)
 
-      // if `src` attr is svg link, directly insert it. else use it as root directory
+      // if `src` attr is svg link, directly insert it. else use it inside the root directory
       if (this.src?.slice(-4) == '.svg') {
         icon.src = this.src
       } else {
@@ -422,25 +437,15 @@ function defineSvgIcon(config) {
       //injecting svg to img
       SVGInject(icon)
 
-      //changing fill property of svg
-      icon.style.fill = this.color
-
-      //making a shadowRoot
+      //opening a shadowRoot and append svg icon
       const shadowRoot = this.attachShadow({ mode: 'open' })
       shadowRoot.appendChild(icon)
-      //accessing the path tags of svg and change the fill property
-      setTimeout((() => {
-        let svgChildren = this.shadowRoot.childNodes[0].childNodes
-        for (let i = 0; i < svgChildren.length; i++) {
-          if (svgChildren[i].style) {
-            svgChildren[i].style.fill = this.color
-          } else {
-            svgChildren[i].style = { fill: this.color }
-          }
-        }
-      }).bind(this), 50)
+
+      // detect when the nodes are rendered
+      observer.observe(this.shadowRoot, { childList: true })
     }
   }
 
+  // define the svg-icon web component
   customElements.define('svg-icon', SVGIcon)
 }
