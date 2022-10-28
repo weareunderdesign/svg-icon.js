@@ -1,34 +1,36 @@
 # svg-icon.js
 
-An SVG icon component for the web. Optimized for smooth design and development experience. Fits into any web framework and can be used anyhow.
+Web component for SVG icons. Works in any web framework and for any purpose. Optimized for smooth design and development workflow (we built it for ourselves!).
 
-```html
-<svg-icon size="”80px”" color="”gray”">arrow</svg-icon>
-```
-
-## Setting things up
-
-1. Install with NPX:
-
-   ```
-   npx @rainbowapp/svg-icon.js
-   ```
-
-   Or, you can get it going quickly with Unpkg CDN:
-
+## Install with Unpkg CDN
+1. Add the following script to your page:
    ```
    <script src="https://unpkg.com/@rainbowapp/svg-icon.js/dist/svg-icon.min.js"></script>
    ```
 
-2. Place all of your icons in the new `/icons` folder created at your root directory (or create it yourself).
-3. Use `icons/svg-icon.config.json` (or create it yourself) to set the default `source`, `color` and `size`.
+## Install with NPX
+1. On you Terminal
+   ```
+   npx @rainbowapp/svg-icon.js
+   ```
+2. Use `/svg-icon.config.json` in your root directoty and set the default `name` , `source`, and `size`.
 
    ```html
-   { "src": "icons", "name": "logos/logo", "size": 24 }
+   {
+   "src": "icons",
+   "name": "logos/logo",
+   "size": 24,
+   }
    ```
-
-4. Use `icons/icons.html` to view all your icons in a simple, organized, and searchable manner.
-
+3. Enjoy icons/icons.html to view all your icons in a simple, organized, and searchable manner.
+4. Place all of your icons in `/icons` at your root directory.
+   ```
+   root/
+   ├─ icons/
+   │  ├─ icon1.svg
+   │  ├─ icon2.svg
+   │  ├─ icon3.svg/
+   ```
 You’re ready to go!
 
 ## Usage
@@ -48,20 +50,23 @@ You’re ready to go!
    Override the source directly by setting a different one in the `src` attribute. You can Either use internal or external links.
 
    ```html
-   <svg-icon
-     src="https://en.wikipedia.org/wiki/Google_logo#/media/File:Google_2015_logo.svg"
-   ></svg-icon>
+   <svg-icon src="icon.svg"></svg-icon>
    ```
 
 2. Colors are one of the main reasons `svg-icon.js` was created!
-   Fills are set by default to the font's inherited color, therefore can be overridden with plain CSS selectors using the `color` property:
+   
+   The fill color of svg-icons is set by default to the inherited color of the font, so it can be overridden using a plain CSS selector.
 
    ```html
    <div style="color: red;">
-     <svg-icon size="80">arrow</svg-icon>
+   	<svg-icon>arrow</svg-icon>
    </div>
    ```
+      And, you can always override colors using the `color` attribute.
 
+   ```html
+   <svg-icon color="red">arrow</svg-icon>
+   ```
 3. You can set the `size` directly (or simply apply your own CSS).
 
    ```html
