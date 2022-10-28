@@ -25,12 +25,12 @@ window.svgIcon = {
 
   // start polling
   checkReady(() => {
-    (() => {
+    (async () => {
       // get current html href
       let currentHtmlHref = window.location.href
 
       // get configFileData
-      const configFileData = findConfig(currentHtmlHref)
+      const configFileData = await findConfig(currentHtmlHref)
       if (configFileData) {
         window.svgIcon.config = configFileData
       }
