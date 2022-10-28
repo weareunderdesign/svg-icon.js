@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- meta info -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- rene.css -->
+    <link rel="stylesheet" href="https://unpkg.com/renecss/dist/rene.min.css" />
+
+    <!-- SVGIcon module js -->
+    <script
+      type="module"
+      src="https://unpkg.com/@rainbowapp/svg-icon.js/dist/svg-icon.min.js"
+    ></script>
+
+    <!-- main js file -->
+    <script type="module" src="./icons.js"></script>
+
+    <!-- page title -->
+    <title>Icons</title>
+  </head>
+
+  <body>
+    <!-- ******************** container begin ******************** -->
+    <div class="view align-center">
+      <div class="page">
+        <!-- Logo -->
+        <div>
+          <svg-icon class="post-icon" size="140">logo</svg-icon>
+        </div>
+
+        <!-- Header -->
+        <div class="box-l gap-m">
+          <!-- Left Panel -->
+          <div class="box-m direction-row">
+            <h1>Library Name</h1>
+            <h4>Library Description.</h4>
+          </div>
+        </div>
+
+        <!-- Search Input -->
+        <div>
+          <input
+            class="border-bottom"
+            style="
+              border-top: none;
+              border-right: none;
+              border-left: none;
+              padding: 0;
+            "
+            id="searchInput"
+            type="text"
+            placeholder="Search"
+          />
+        </div>
+
+        <!-- Content -->
+        <div id="content" class="gap-xl direction-row">
+          <!-- Here, icons.js fetch all of the svg icons from /icons directory -->
+        </div>
+      </div>
+    </div>
+    <!-- ******************** container end ******************** -->
+  </body>
+</html>

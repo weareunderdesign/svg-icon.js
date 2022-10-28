@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="https://unpkg.com/renecss/dist/rene.min.css">
+        <link rel="stylesheet" href="https://relate-icons.relate.design/css/styles.css">
+        <link rel="stylesheet" href="./css/styles.css">
+        <script defer src="./js/main.js"></script>
+        <script src="https://unpkg.com/@rainbowapp/svg-icon.js/dist/svg-icon.min.js"></script>
+        <title>Page1</title>
+    </head>
+    <body class="direction-column align-center">
+        <div class="page view">
+            <div class="gap-xl justify-stretch">
+                <a>
+                    <img src="./images/rnbw2.svg" height="24px" />
+                </a>
+                <a class="gap-s justify-start font-color-primary">
+                    <div class="icon-s icon-github"></div>GitHub ↗
+                </a>
+            </div>
+            <h1 class="font-color-primary">svg-icon.js</h1>
+            <h4>Web component for SVG icons. Works without or with any web framework and for any purpose. Optimized for smooth design and development workflow (we built it for ourselves).</h4>
+            <div class="padding-xl radius-m background-secondary gap-m direction-row">
+                <h3>Quick Setup</h3>
+                <p>Quick start with Unpkg CDN</p>
+                <code class="padding-xl text-l radius-m background-primary">
+                    <span class="">
+                        <div>&lt;script src="https://unpkg.com/@rainbowapp/svg-icon.js/dist/svg-icon.min.js"&gt;&lt;/script&gt;</div>
+                    </span>
+                </code>
+                <p>
+                    Install with NPX (and enjoy <u class="">the template</u> to view all your icons in a simple, organized, and searchable manner).
+                </p>
+                <code class="padding-xl text-l radius-m background-primary">
+                    <span class="">
+                        <div>npx @rainbowapp/svg-icon.js</div>
+                    </span>
+                </code>
+                <p>
+                    Place all of your icons in <b>/icons</b> at your root directory.
+                </p>
+                <code class="padding-xl text-l radius-m background-primary">
+                    <div>
+                        <div>root/</div>
+                        <div>├─ icons/</div>
+                        <div>│  ├─ icon1.svg</div>
+                        <div>│  ├─ icon2.svg</div>
+                        <div>│  ├─ icon3.svg/</div>
+                    </div>
+                </code>
+                <p>You're ready to go!</p>
+            </div>
+            <div class="padding-xl radius-m background-secondary gap-m direction-row">
+                <h3>
+                    <div>Basic Usage</div>
+                </h3>
+                <div class="box gap-l justify-start">
+                    <svg-icon>shapes/oval</svg-icon>
+                    <code class="padding-m text-l padding-l radius-m background-primary box">
+                            <div>
+                                &lt;svg-icon&gt;<b>arrow</b>&lt;/svg-icon&gt;
+                            </div>
+                    </code>
+                </div>
+                <p>
+                    <div>
+                        Or, you can do <b>folder/icon-name</b> if you’ve categorized your library into folders.
+                    </div>
+                </p>
+                <div class="box gap-l justify-start">
+                    <div class="icon-xl icon-color2"></div>
+                    <code class="padding-m text-l padding-l radius-m background-primary box">
+                        <div>
+                            &lt;svg-icon&gt;<b>arrows/right</b>&lt;/svg-icon&gt;
+                        </div>
+                    </code>
+                </div>
+                <p>
+                    Override the source directly by setting a different one in the <b>src</b> attribute. You can Either use internal or external links.
+                </p>
+                <code class="padding-m text-l padding-l radius-m background-primary">
+                    <div>
+                        &lt;svg-icon src="<b>icon.svg</b>"&gt;&lt;/svg-icon&gt;
+                    </div>
+                </code>
+            </div>
+            <div class="gap-xl box">
+                <div class="padding-xl radius-m background-secondary gap-m direction-row">
+                    <h3>Colors</h3>
+                    <p>
+                        <div>The fill color of svg-icons is set by default to the inherited color of the font, so it can be overridden using a plain CSS selector.</div>
+                    </p>
+                    <div class="box gap-l">
+                        <div class="icon-xl icon-color2"></div>
+                        <code class="padding-m text-l padding-l radius-m background-primary box">
+                            <div>
+                                <div>&lt;div style="color: red;"&gt;</div>
+                                <div>
+                                    <span class=""> </span>&lt;svg-icon&gt;<b>arrow</b>&lt;/svg-icon&gt;
+                                </div>
+                                <div>&lt;/div&gt;</div>
+                            </div>
+                        </code>
+                    </div>
+                    <p>And, you can always override colors using the color attribute:</p>
+                    <code class="padding-m text-l padding-l radius-m background-primary">
+                        <div>
+                            &lt;svg-icon color="red"&gt;<b>arrow</b>&lt;/svg-icon&gt;
+                        </div>
+                    </code>
+                </div>
+                <div class="padding-xl radius-m background-secondary box-s gap-m">
+                    <h3>Size</h3>
+                    <p>Apply size directly (or simply your own CSS).</p>
+                    <div class="icon-xl icon-color2"></div>
+                    <code class="padding-m text-l padding-l radius-m background-primary">
+                        <div>
+                            &lt;svg-icon size="<b>80</b>"&gt;arrow&lt;/svg-icon&gt;
+                        </div>
+                    </code>
+                </div>
+            </div>
+            <div class="gap-xl justify-stretch">
+                <a>
+                    <img src="./images/rnbw2.svg" height="24px" />
+                </a>
+                <a class="gap-s justify-start font-color-primary">
+                    <div class="icon-s icon-github"></div>GitHub ↗
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
