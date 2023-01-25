@@ -438,6 +438,7 @@ function defineSvgIcon(config) {
       SVGInject(icon)
 
       //opening a shadowRoot and append svg icon
+      if (!!this.shadowRoot) return
       const shadowRoot = this.attachShadow({ mode: 'open' })
       shadowRoot.appendChild(icon)
 
