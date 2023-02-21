@@ -3,25 +3,32 @@
 Web component for SVG icons. Works in any web framework and for any purpose. Optimized for smooth design and development workflow (we built it for ourselves!).
 
 ## Install with Unpkg CDN
+
 1. Add the following script to your page:
    ```
    <script src="https://unpkg.com/@rainbowapp/svg-icon.js/dist/svg-icon.min.js"></script>
    ```
 
-## Install with NPX
+## Install with NPM
+
 1. On you Terminal
    ```
-   npx @rainbowapp/svg-icon.js
+   npm i @rainbowapp/svg-icon.js
    ```
-2. Use `/svg-icon.config.json` in your root directoty and set the default `name` , `source`, and `size`.
+2. Use `/svg-icon.config.json` in your root directory and set the default `source`.
+
+   You can use relative path based on the root directory
 
    ```html
-   {
-   "src": "icons",
-   "name": "logos/logo",
-   "size": 24,
-   }
+   { "src": "icons/" }
    ```
+
+   It can be also any other CDN
+
+   ```html
+   { "src": "https://raincons.rnbw.dev/" }
+   ```
+
 3. Enjoy icons/icons.html to view all your icons in a simple, organized, and searchable manner.
 4. Place all of your icons in `/icons` at your root directory.
    ```
@@ -31,7 +38,7 @@ Web component for SVG icons. Works in any web framework and for any purpose. Opt
    │  ├─ icon2.svg
    │  ├─ icon3.svg/
    ```
-You’re ready to go!
+   You’re ready to go!
 
 ## Usage
 
@@ -50,23 +57,25 @@ You’re ready to go!
    Override the source directly by setting a different one in the `src` attribute. You can Either use internal or external links.
 
    ```html
-   <svg-icon src="icon.svg"></svg-icon>
+   <svg-icon src="https://rnbw.company/images/icon.svg"></svg-icon>
    ```
 
 2. Colors are one of the main reasons `svg-icon.js` was created!
-   
+
    The fill color of svg-icons is set by default to the inherited color of the font, so it can be overridden using a plain CSS selector.
 
    ```html
    <div style="color: red;">
-   	<svg-icon>arrow</svg-icon>
+     <svg-icon>arrow</svg-icon>
    </div>
    ```
-      And, you can always override colors using the `color` attribute.
+
+   And, you can always override colors using the `color` attribute.
 
    ```html
    <svg-icon color="red">arrow</svg-icon>
    ```
+
 3. You can set the `size` directly (or simply apply your own CSS).
 
    ```html

@@ -43,7 +43,7 @@ Considering you already have a NPM account, with NPM and Node.js installed on yo
    ```
 
    > You might also be asked for a `one-time-password` if there is 2FA applied on your account.
-   >
+
 2. Set the package semantic version correctly at `package.json`.
    ```
    {
@@ -69,9 +69,9 @@ The svg-icon.js community can be found on [GitHub Discussions](https://github.co
 
 Contributions are always welcome and can be a quick way to get your fix or improvement slated for the next release. In general, PRs should:
 
-* Address a single concern in the least number of changed lines as possible.
-* Include documentation in the repo or on our docs site.
-* Be accompanied by a complete Pull Request template (loaded automatically when a PR is created).
+- Address a single concern in the least number of changed lines as possible.
+- Include documentation in the repo or on our docs site.
+- Be accompanied by a complete Pull Request template (loaded automatically when a PR is created).
 
 > For changes that address core functionality or would require breaking changes (e.g. a major release), it's best to open an Issue to discuss your proposal first. This is not required but can save time in creating and reviewing changes.
 

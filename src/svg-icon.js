@@ -1,76 +1,4 @@
-// global variable promise for svg-icon web component
-window.svgIcon = {
-  configFileName: 'svg-icon.config.json',
-  config: {
-    "size": 24,
-    "name": "logos/logo",
-    "src": "./"
-  },
-  rootDirectory: './'
-};
-
-(function () {
-  if (!window.jQuery) {
-    // load jquery js
-    let script = document.createElement("SCRIPT")
-    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
-    script.type = 'text/javascript'
-    document.getElementsByTagName("head")[0].appendChild(script)
-  }
-
-  // poll for jQuery to come into existence
-  let checkReady = function (cb) {
-    window.jQuery ? cb() : window.setTimeout(function () { checkReady(cb) }, 20)
-  }
-
-  // start polling
-  checkReady(() => {
-    (async () => {
-      // get current html href
-      let currentHtmlHref = window.location.href
-
-      // get configFileData
-      const configFileData = await findConfig(currentHtmlHref)
-      if (configFileData) {
-        window.svgIcon.config = configFileData
-      }
-
-      // define my custom element <svg-icon></svg-icon>
-      defineSvgIcon(window.svgIcon.config)
-    })()
-  })
-})()
-
-// find the sibling config js file based on href, else search through parent nodes
-const findConfig = async (href) => {
-  // get the current directory config url
-  let hArr = href.split('/')
-  hArr.pop()
-  let currentDirUrl = hArr.join('/')
-  if (currentDirUrl == '') {
-    return null
-  }
-  let currentDirConfigUrl = `${currentDirUrl}/${window.svgIcon.configFileName}`
-
-  // get the config js file content
-  let config
-  $.ajax({
-    url: currentDirConfigUrl,
-    async: false,
-    success: function (configFileContent) {
-      window.svgIcon.rootDirectory = currentDirUrl
-      config = configFileContent
-    },
-    error: function () {
-      config = null
-    },
-  })
-  return config ? config : findConfig(currentDirUrl)
-}
-
-// define web component svg-icon
-function defineSvgIcon(config) {
-  // module function
+(async () => {
   !(function (o, l) {
     var r,
       a,
@@ -375,78 +303,96 @@ function defineSvgIcon(config) {
     'object' == typeof module && 'object' == typeof module.exports && (module.exports = e)
   })(window, document)
 
-  // SVGIcon Web Component class
+  const configFileName = 'svg-icon.config.json'
+  let config = {
+    src: './'
+  }
+
+  const SVGIcons = []
+  const SVGIconsComputedStyle = []
+
+  const findConfig = async (href) => {
+    let hArr = href.split('/')
+    hArr.pop()
+    let currentDirUrl = hArr.join('/')
+    if (currentDirUrl === '') {
+      return null
+    }
+    let currentDirConfigUrl = `${currentDirUrl}/${configFileName}`
+
+    let config
+    await fetch(currentDirConfigUrl, { method: 'GET' })
+      .then(res => res.json())
+      .then(configFileContent => {
+        config = configFileContent
+      })
+      .catch(err => {
+        config = null
+      })
+
+    return config || findConfig(currentDirUrl)
+  }
+
+  const currentHtmlHref = window.location.href
+  const configFileData = await findConfig(currentHtmlHref)
+  if (configFileData) {
+    config = configFileData
+  }
+
   class SVGIcon extends HTMLElement {
     constructor() {
       super()
-    }
-
-    get size() {
-      // return `size` attr, else default global size
-      return this.hasAttribute('size') ? +this.getAttribute('size') : config?.size
-    }
-
-    get src() {
-      // return `src` attr, else default global src
-      // remove the end-slash from the src url
-      return this.hasAttribute('src') ?
-        this.getAttribute('src') == '' ? config?.src : this.getAttribute('src').replace(/\/$/, '')
-        : config?.src
-    }
-
-    get color() {
-      // return `color` attr, else inherited color
-      return this.hasAttribute('color') ? this.getAttribute('color') : $(this).css('color')
-    }
-
-    get name() {
-      // return tag's text-content, else default global icon name
-      // remove the spaces from the text-content
-      return this.innerHTML ? this.innerHTML.replace(/\s+/g, "") : config?.name
+      this._name = this.innerHTML
+      this.innerHTML = ''
     }
 
     connectedCallback() {
-      // store property color to use it inside the mutations
-      let svgColor = this.color
-      // create observer to detect if the svg-icon is rendered inside the shadowRoot
-      var observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-          //Detect <img> insertion
-          if (mutation.addedNodes.length) {
-            // apply the svgColor to all of the svg's childNodes
-            let svgChildNodes = mutation.addedNodes[0].childNodes
-            for (let i = 0; i < svgChildNodes.length; i++) {
-              if (svgChildNodes[i].style) {
-                svgChildNodes[i].style.fill = svgColor
-              }
-            }
-          }
-        })
-      })
+      const src = this.hasAttribute('src') ? this.getAttribute('src') : config.src.replace(/\/$/, '') + '/' + this._name.replace(/\s+/g, "") + '.svg'
 
-      // create sized Image to inject svg
-      const icon = new Image(this.size, this.size)
+      const imgElement = document.createElement('img')
+      this.appendChild(imgElement)
+      imgElement.src = src
+      imgElement.onload = () => {
+        const { width, height } = getComputedStyle(imgElement)
+        const _width = parseInt(width)
+        const _height = parseInt(height)
+        imgElement.remove()
 
-      // if `src` attr is svg link, directly insert it. else use it inside the root directory
-      if (this.src?.slice(-4) == '.svg') {
-        icon.src = this.src
-      } else {
-        icon.src = `${window.svgIcon.rootDirectory}/${this.src}/${this.name}.svg`
+        this.style.display = 'flex'
+
+        const icon = new Image(_width, _height)
+        icon.src = src
+        SVGInject(icon)
+
+        this.replaceChildren(icon)
+
+        SVGIcons.push(this)
+        SVGIconsComputedStyle.push(getComputedStyle(this))
       }
-
-      //injecting svg to img
-      SVGInject(icon)
-
-      //opening a shadowRoot and append svg icon
-      if (!!this.shadowRoot) return
-      const shadowRoot = this.attachShadow({ mode: 'open' })
-      shadowRoot.appendChild(icon)
-
-      // detect when the nodes are rendered
-      observer.observe(this.shadowRoot, { childList: true })
     }
   }
-
-  // define the svg-icon web component
   customElements.define('svg-icon', SVGIcon)
-}
+
+  var tid = setInterval(function () {
+    if (document.readyState !== 'complete') return
+    clearInterval(tid)
+
+    const html = document.querySelector("html")
+    const observer = new MutationObserver(function (mutations) {
+      try {
+        SVGIcons.forEach((svgIcon, index) => {
+          const { color } = SVGIconsComputedStyle[index]
+          const svgChildNodes = svgIcon.childNodes[0].childNodes
+          for (let i = 0; i < svgChildNodes.length; ++i)
+            svgChildNodes[i].style ? svgChildNodes[i].style.fill = color : null
+        })
+      } catch (err) {
+      }
+    })
+    observer.observe(html, {
+      attributes: true,
+      subtree: true,
+      childList: true
+    })
+  }, 10)
+})()
