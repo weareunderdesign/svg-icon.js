@@ -352,6 +352,7 @@
       const cssObj = getComputedStyle(this)
       const _width = parseInt(cssObj.width) || 0
       const _height = parseInt(cssObj.height) || 0
+
       this.style.display = 'flex'
 
       const getImage = async (url) => {
