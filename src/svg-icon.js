@@ -349,17 +349,36 @@
     connectedCallback() {
       const src = this.hasAttribute('src') ? this.getAttribute('src') : config.src.replace(/\/$/, '') + '/' + this._name.replace(/\s+/g, "") + '.svg'
 
-      const imgElement = document.createElement('img')
-      this.appendChild(imgElement)
-      imgElement.src = src
-      imgElement.onload = () => {
-        const { width, height } = getComputedStyle(imgElement)
-        const _width = parseInt(width)
-        const _height = parseInt(height)
-        imgElement.remove()
+      const cssObj = getComputedStyle(this)
+      const _width = parseInt(cssObj.width) || 0
+      const _height = parseInt(cssObj.height) || 0
+      this.style.display = 'flex'
 
-        this.style.display = 'flex'
+      const getImage = async (url) => {
+        return new Promise((resolve, reject) => {
+          let img = new Image()
+          img.onload = () => resolve(img)
+          img.onerror = reject
+          img.src = url
+        })
+      }
 
+      const svgIconElement = this
+
+      if (_width === 0 || _height === 0) {
+        getImage(src).then(res => {
+          const icon = new Image(parseInt(res.width), parseInt(res.height))
+          svgIconElement.width = res.width
+          svgIconElement.height = res.height
+          icon.src = src
+          SVGInject(icon)
+
+          svgIconElement.replaceChildren(icon)
+
+          SVGIcons.push(svgIconElement)
+          SVGIconsComputedStyle.push(cssObj)
+        })
+      } else {
         const icon = new Image(_width, _height)
         icon.src = src
         SVGInject(icon)
@@ -367,7 +386,7 @@
         this.replaceChildren(icon)
 
         SVGIcons.push(this)
-        SVGIconsComputedStyle.push(getComputedStyle(this))
+        SVGIconsComputedStyle.push(cssObj)
       }
     }
   }
