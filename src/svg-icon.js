@@ -342,11 +342,12 @@
   class SVGIcon extends HTMLElement {
     constructor() {
       super()
-      this._name = this.innerHTML
-      this.innerHTML = ''
     }
 
     connectedCallback() {
+      this._name = this.innerHTML
+      this.innerHTML = ''
+
       const src = this.hasAttribute('src') ? this.getAttribute('src') : config.src.replace(/\/$/, '') + '/' + this._name.replace(/\s+/g, "") + '.svg'
 
       const cssObj = getComputedStyle(this)
