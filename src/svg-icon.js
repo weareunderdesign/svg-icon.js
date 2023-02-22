@@ -308,9 +308,6 @@
     src: './'
   }
 
-  const SVGIcons = []
-  const SVGIconsComputedStyle = []
-
   const findConfig = async (href) => {
     let hArr = href.split('/')
     hArr.pop()
@@ -345,70 +342,48 @@
     }
 
     connectedCallback() {
-      this._name = this.innerHTML
-      this.innerHTML = ''
+      if (this.childNodes[0] && this.childNodes[0].childNodes.length) return
 
-      const src = this.hasAttribute('src') ? this.getAttribute('src') : config.src.replace(/\/$/, '') + '/' + this._name.replace(/\s+/g, "") + '.svg'
+      if (this.innerHTML.includes(`<img`)) {
+        return
+      }
+
+      const src = this.hasAttribute('src') ? this.getAttribute('src') : config.src.replace(/\/$/, '') + '/' + this.innerHTML.replace(/\s+/g, "") + '.svg'
 
       const cssObj = getComputedStyle(this)
       const _width = parseInt(cssObj.width) || 0
       const _height = parseInt(cssObj.height) || 0
 
-      this.style.display = 'flex'
-
-      const getImage = async (url) => {
-        return new Promise((resolve, reject) => {
-          let img = new Image()
-          img.onload = () => resolve(img)
-          img.onerror = reject
-          img.src = url
-        })
-      }
-
-      const svgIconElement = this
-
-      if (_width === 0 || _height === 0) {
-        getImage(src).then(res => {
-          const icon = new Image(parseInt(res.width), parseInt(res.height))
-          svgIconElement.width = res.width
-          svgIconElement.height = res.height
-          icon.src = src
-          SVGInject(icon)
-
-          svgIconElement.replaceChildren(icon)
-
-          SVGIcons.push(svgIconElement)
-          SVGIconsComputedStyle.push(cssObj)
-        })
-      } else {
-        const icon = new Image(_width, _height)
-        icon.src = src
+      const icon = new Image(...(_width === 0 || _height === 0 ? [] : [_width, _height]))
+      icon.src = src
+      icon.onload = () => {
         SVGInject(icon)
-
-        this.replaceChildren(icon)
-
-        SVGIcons.push(this)
-        SVGIconsComputedStyle.push(cssObj)
       }
+
+      this.replaceChildren(icon)
     }
   }
   customElements.define('svg-icon', SVGIcon)
 
-  var tid = setInterval(function () {
+  const tid = setInterval(() => {
     if (document.readyState !== 'complete') return
     clearInterval(tid)
 
     const html = document.querySelector("html")
-    const observer = new MutationObserver(function (mutations) {
-      try {
-        SVGIcons.forEach((svgIcon, index) => {
-          const { color } = SVGIconsComputedStyle[index]
-          const svgChildNodes = svgIcon.childNodes[0].childNodes
-          for (let i = 0; i < svgChildNodes.length; ++i)
-            svgChildNodes[i].style ? svgChildNodes[i].style.fill = color : null
-        })
-      } catch (err) {
-      }
+    const observer = new MutationObserver((mutations) => {
+      const SVGIcons = document.querySelectorAll('svg-icon')
+      SVGIcons.forEach((svgIcon, index) => {
+        const { color } = getComputedStyle(svgIcon)
+        const setColor = (node) => {
+          if (node.childNodes) {
+            node.childNodes.forEach((c_node) => {
+              c_node.style ? c_node.style.fill = color : null
+              setColor(c_node)
+            })
+          }
+        }
+        setColor(svgIcon)
+      })
     })
     observer.observe(html, {
       attributes: true,
