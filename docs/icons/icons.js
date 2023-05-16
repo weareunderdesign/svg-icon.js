@@ -103,7 +103,7 @@
 
         // build html for the category section
         categorySectionHtml += `
-              <div class="gap-m direction-row">
+              <div class="gap-m column">
                 <!-- Category Label -->
                 <div>
                   <h5 style="text-transform: capitalize;" id="${categoryName}" class="category-label">${categoryName}</h5>
@@ -128,7 +128,7 @@
       if (uncategorizedIcons.length > 0) {
         let categoryName = 'Uncategorized'
         uncategorizedHtml = `
-              <div class="gap-m direction-row">
+              <div class="gap-m column">
                 <!-- Category Label -->
                 <div>
                   <h5 id="${categoryName}" class="category-label">${categoryName}</h5>
