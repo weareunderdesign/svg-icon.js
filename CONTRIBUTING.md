@@ -34,34 +34,24 @@ You’ll find the generated file at `/dist/svg-icon.js.min`
 
 ## Publish a new package
 
-Considering you already have a NPM account, with NPM and Node.js installed on your local machine.
+To publish a new package version, follow these simple steps:
+1. Update `package.json`: Increment the version number in your `package.json` file according to semantic versioning.
+2. Commit Changes.
+3. Push Changes in `main` branch.
+4. GitHub Actions will automatically trigger the workflow to create a release based on the updated version in `package.json` and publish the new package version.
 
-1. Open a terminal to login to your NPM account and fill out your username, email and password as requested.
+### GitHub Actions Workflow Overview
 
-   ```
-   npm login
-   ```
+The workflow file [`release-on-version-change.yml`](https://github.com/rnbwdev/svg-icon.js/blob/main/.github/workflows/release-on-version-change.yml) runs ***Version Check*** and ***Release Creation*** actions.
+The workflow file [`publish-npm-package.yml`](https://github.com/rnbwdev/svg-icon.js/blob/main/.github/workflows/publish-npm-package.yml) runs ***Publish NPM Package*** action.
 
-   > You might also be asked for a `one-time-password` if there is 2FA applied on your account.
-
-2. Set the package semantic version correctly at `package.json`.
-   ```
-   {
-    ...
-   "version": "*.*.*",
-    ...
-   }
-   ```
-3. Then run the below command to publish the new version of package.
-   ```
-   npm --access=public publish
-   ```
-
-That’s all! Your package is published!
+1. ***Version Check***: Checks if the version in the `npm package.json` matches the version in the GitHub repository.
+2. ***Release Creation***: Creates a GitHub release when the version in `npm package.json` is different from the version in the GitHub repository.
+3. ***Publish NPM Package***: Publishes a new package version when a release is created.
 
 ## Code of Conduct
 
-We take our open-source community seriously and hold ourselves and other contributors to high communication standards. You agree to uphold our Code of Conduct by participating and contributing to this proje[ct](https://github.com/relateapp/rene.css/blob/main/CODE_OF_CONDUCT.md).
+We take our open-source community seriously and hold ourselves and other contributors to high communication standards. You agree to uphold our [Code of Conduct](https://github.com/rnbwdev/rene.css/blob/main/code_of_conduct.md) by participating and contributing to this project.
 
 ## Getting Help
 

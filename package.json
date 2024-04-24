@@ -1,24 +1,26 @@
 {
-  "name": "@rainbowapp/svg-icon.js",
-  "version": "1.4.0",
+  "name": "@rnbws/svg-icon.js",
+  "version": "0.0.1",
   "description": "js library which allows you to use svg-icon tag <svg-icon></svg-icon>",
   "main": "dist/svg-icon.min.js",
   "unpkg": "dist/svg-icon.min.js",
+
+  "publishConfig": {
+    "@rnbws:registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "license": "ISC",
+    "bugs": {
+    "url": "https://github.com/@rnbws/svg-icon.js/issues"
+  },
+  "homepage": "https://github.com/@rnbws/svg-icon.js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/@rnbws/svg-icon.js.git"
+  },
   "author": "Rainbow",
   "keywords": [
     "svg-icon"
   ],
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rnbwdev/svg-icon.js.git"
-  },
-  "scripts": {
-    "svg-icon.min": "webpack --config bundler.config.js"
-  },
-  "devDependencies": {
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
-  },
   "bin": "./src/index.js"
 }
