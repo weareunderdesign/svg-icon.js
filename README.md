@@ -6,14 +6,14 @@ Web component for SVG icons. Works in any web framework and for any purpose. Opt
 
 1. Add the following script to your page:
    ```
-   <script src="https://unpkg.com/@rainbowapp/svg-icon.js/dist/svg-icon.min.js"></script>
+   <script src="https://unpkg.com/@rnbws/svg-icon.js/dist/svg-icon.min.js"></script>
    ```
 
 ## Install with NPM
 
 1. On you Terminal
    ```
-   npm i @rainbowapp/svg-icon.js
+   npm i @rnbws/svg-icon.js
    ```
 2. Use `/svg-icon.config.json` in your root directory and set the default `source`.
 
