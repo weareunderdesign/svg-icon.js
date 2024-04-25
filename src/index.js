@@ -3,7 +3,7 @@
 const { exec } = require("child_process");
 
 // install the main package as dependency
-exec("npm install --save @rainbowapp/svg-icon.js", (error, stdout, stderr) => {
+exec("npm install --save @rnbws/svg-icon.js", (error, stdout, stderr) => {
   if (error) {
     console.log(`error: ${error.message}`);
     return;
