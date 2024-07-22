@@ -57,7 +57,7 @@ Web component for SVG icons. Works in any web framework and for any purpose. Opt
    Override the source directly by setting a different one in the `src` attribute. You can Either use internal or external links.
 
    ```html
-   <svg-icon src="https://rnbw.company/images/icon.svg"></svg-icon>
+   <svg-icon src="https://rnbw.design/images/icon.svg"></svg-icon>
    ```
 
 2. Colors are one of the main reasons `svg-icon.js` was created!
