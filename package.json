@@ -5,7 +5,7 @@
   "main": "dist/svg-icon.min.js",
   "unpkg": "dist/svg-icon.min.js",
   "scripts": {
-    "svg-icon.min": "webpack --config bundler.config.js"
+    "svg-icon.min": "npm version patch && webpack --config bundler.config.js"
   },
   "devDependencies": {
     "webpack": "^5.74.0",
